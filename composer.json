@@ -1,0 +1,55 @@
+{
+  "name": "spriebsch/filesystem",
+  "description": "Lightweight object-oriented API to the filesystem.",
+  "authors": [
+    {
+      "name": "Stefan Priebsch",
+      "email": "stefan@priebsch.de",
+      "homepage": "https://priebsch.de",
+      "role": "Developer"
+    }
+  ],
+  "license": "BSD-3-Clause",
+  "autoload": {
+    "classmap": [
+      "src"
+    ]
+  },
+  "config": {
+    "platform": {
+      "php": "8.3"
+    },
+    "optimize-autoloader": true,
+    "sort-packages": true
+  },
+  "prefer-stable": true,
+  "require": {
+    "php": "^8.3",
+    "ext-sqlite3": "*"
+  },
+  "scripts": {
+    "post-autoload-dump": "composer generate-autoloader",
+    "generate-autoloader": [
+      "tools/phpab --basedir src --output src/autoload.php composer.json",
+      "tools/phpab --output tests/autoload.php tests"
+    ],
+    "clean": "rm -rf build/*",
+    "test": "tools/phpunit",
+    "mutation-test": [
+      "rm build/infection.log",
+      "tools/infection"
+    ],
+    "code-coverage": [
+      "rm -rf build/code-coverage",
+      "@putenv XDEBUG_MODE=coverage",
+      "tools/phpunit --coverage-html build/code-coverage"
+    ],
+    "path-coverage": [
+      "rm -rf build/code-coverage",
+      "@putenv XDEBUG_MODE=coverage",
+      "tools/phpunit --coverage-html build/code-coverage --path-coverage"
+    ],
+    "show-coverage": "gio open build/code-coverage/index.html",
+    "update-tools": "phive update"
+  }
+}
