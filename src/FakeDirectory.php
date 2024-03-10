@@ -28,7 +28,10 @@ final class FakeDirectory implements Directory
 
     public function file(string $filename): File
     {
-        // @todo what if does not exist?
+        if (!isset($this->files[$filename])) {
+            throw FilesystemException::doesNotExist($filename);
+        }
+
         return new FakeFile($filename, $this->files[$filename]->load());
     }
 
