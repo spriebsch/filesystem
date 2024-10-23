@@ -63,6 +63,13 @@ final class ExistingFile extends Filesystem implements File
         return $content;
     }
 
+    public function overwrite(string $content): string
+    {
+        $this->ensureFileStillExists();
+
+        file_put_contents($this->filename, $content);
+    }
+
     public function asString(): string
     {
         return $this->filename;

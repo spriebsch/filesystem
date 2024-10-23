@@ -35,6 +35,11 @@ final class FakeDirectory implements Directory
         return new FakeFile($filename, $this->files[$filename]->load());
     }
 
+    public function exists(string $filename): bool
+    {
+        return isset($this->files[$filename]);
+    }
+
     public function isFile(): bool
     {
         return false;

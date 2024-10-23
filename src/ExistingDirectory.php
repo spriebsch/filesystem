@@ -46,6 +46,13 @@ final class ExistingDirectory extends Filesystem implements Directory
         return ExistingFile::from($this->directory . '/' . $filename);
     }
 
+    public function exists(string $filename): bool
+    {
+        $this->ensureFilenameDoesNotContainSlashes($filename);
+
+        return file_exists($this->directory . '/' . $filename);
+    }
+
     public function isFile(): bool
     {
         $this->ensureDirectoryStillExists();

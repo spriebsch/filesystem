@@ -15,6 +15,8 @@ interface Directory
 {
     public function file(string $filename): File;
 
+    public function exists(string $filename): bool;
+
     public function isFile(): bool;
 
     public function isDirectory(): bool;

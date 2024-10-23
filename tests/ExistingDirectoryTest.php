@@ -137,7 +137,21 @@ class ExistingDirectoryTest extends AbstractDirectoryTestBase
 
     public function test_can_access_file(): void
     {
-        $this->assertEquals(__FILE__, Filesystem::from(__DIR__)->file(basename(__FILE__))->asString());
+        $this->assertEquals(
+            __FILE__,
+            Filesystem::from(__DIR__)->file(basename(__FILE__))->asString()
+        );
+    }
+
+    public function test_can_check_file_existence(): void
+    {
+        $this->assertTrue(
+            Filesystem::from(__DIR__)->exists(basename(__FILE__))
+        );
+
+        $this->assertFalse(
+            Filesystem::from(__DIR__)->exists('does-not-exist')
+        );
     }
 
     public function test_iterates_over_directory(): void

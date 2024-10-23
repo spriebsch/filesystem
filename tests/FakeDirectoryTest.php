@@ -26,6 +26,20 @@ class FakeDirectoryTest extends AbstractDirectoryTestBase
         return new FakeDirectory(self::PATH);
     }
 
+    public function test_can_check_file_existence(): void
+    {
+        $directory = new FakeDirectory(self::PATH);
+        $directory->createFile('the-filename', 'the-content');
+
+        $this->assertTrue(
+            $directory->exists('the-filename')
+        );
+
+        $this->assertFalse(
+            $directory->exists('does-not-exist')
+        );
+    }
+
     public function test_can_be_converted_to_string(): void
     {
         $directory = new FakeDirectory(self::PATH);
