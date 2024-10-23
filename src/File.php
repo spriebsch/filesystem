@@ -23,7 +23,7 @@ interface File
 
     public function load(): string;
 
-    public function overwrite(string $content): string;
+    public function overwrite(string $content): void;
 
     public function asString(): string;
 }

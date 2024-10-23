@@ -63,7 +63,7 @@ final class FakeFile implements File
         return $this->content;
     }
 
-    public function overwrite(string $content): string
+    public function overwrite(string $content): void
     {
         $this->content = $content;
     }
