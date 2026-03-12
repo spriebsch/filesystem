@@ -24,8 +24,7 @@
   },
   "prefer-stable": true,
   "require": {
-    "php": "^8.3",
-    "ext-sqlite3": "*"
+    "php": "^8.3"
   },
   "scripts": {
     "post-autoload-dump": "composer generate-autoloader",
